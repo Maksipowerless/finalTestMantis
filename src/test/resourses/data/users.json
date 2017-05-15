@@ -1,0 +1,16 @@
+{
+  "tester":{
+    "login":"tester",
+    "password":"testerpass"
+  },
+
+  "developer":{
+    "login":"developer",
+    "password":"usertestpassword"
+  },
+
+  "manager":{
+    "login":"manager",
+    "password":"leadpass"
+  }
+}

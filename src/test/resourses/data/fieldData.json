@@ -1,0 +1,16 @@
+{
+  "form1":{
+    "category":"General",
+    "reproducibility":"always",
+    "severity":"block",
+    "priority":"urgent",
+    "platform":"Win32",
+    "os":"Windows",
+    "osVersion":"30",
+    "assignTo":"developer",
+    "summary":"summary qwerty",
+    "description":"this is test!!!",
+    "steptoreproduce":"step by step",
+    "additionalinfo":"it's work"
+  }
+}
