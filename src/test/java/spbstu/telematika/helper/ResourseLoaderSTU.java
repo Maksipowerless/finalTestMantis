@@ -4,17 +4,16 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
 import lombok.Getter;
-import lombok.SneakyThrows;
 import org.apache.commons.io.IOUtils;
 import spbstu.telematika.factoryPageObjects.entities.FieldData;
 import spbstu.telematika.factoryPageObjects.entities.User;
-import sun.nio.ch.IOUtil;
+
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URL;
-
 import java.util.Map;
+
 
 
 @Getter
@@ -55,6 +54,10 @@ public class ResourseLoaderSTU {
         Type type = new TypeToken<Map<String, FieldData>>() {
         }.getType();
         fieldData = new Gson().fromJson(rawData, type);
+
+        for (String key : fieldData.keySet()) {
+            fieldData.get(key).setRandomNumbers();
+        }
     }
 
     private static String getRawData(String dataJson) throws IOException {

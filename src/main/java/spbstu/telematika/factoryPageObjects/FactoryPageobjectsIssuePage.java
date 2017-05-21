@@ -5,17 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import spbstu.telematika.factoryPageObjects.entities.FieldData;
-import sun.awt.motif.X11CNS11643;
 
 
 import java.util.List;
-import java.util.Map;
-import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
-/**
- * Created by maxfromperek on 09.04.17.
- */
+
 public class FactoryPageobjectsIssuePage {
 
     @FindBy(xpath = "//a[contains(text(), 'Report Issue')]")
@@ -129,7 +124,6 @@ public class FactoryPageobjectsIssuePage {
     @FindBy(xpath = "//*/td[@class='bug-additional-information']")
     WebElement issueTableAdditionalInfo;
 
-
     @FindBy(xpath = " //*[@name='new_status' and @class='input-sm']")
     WebElement buttonNewStatus;
 
@@ -145,7 +139,11 @@ public class FactoryPageobjectsIssuePage {
     @FindBy(xpath = "//input[@type='submit' and @value='Close Issue']")
     WebElement buttonCloseIssue;
 
+    @FindBy(xpath = "//span[contains(text(), 'My View')]")
+    WebElement buttonMyView;
 
+    @FindBy(xpath = "//a[contains(text(), 'Recently Modified')]")
+    WebElement tableResentlyModified;
 
     public void openReportIssuePage() {
         buttonReportIssue.click();
@@ -164,7 +162,6 @@ public class FactoryPageobjectsIssuePage {
 
         String priority = fieldData.getPriority();
         checkPriority.findElement(By.xpath("//option[contains(text(), '" + priority + "')]")).click();
-
 
         if (buttonUncover.isDisplayed())
             buttonUncover.click();
@@ -207,22 +204,20 @@ public class FactoryPageobjectsIssuePage {
                 .collect(Collectors.toList());
 
         return checkedFields.stream().anyMatch(e -> e.contains(data.getSummary()) && e.contains(data.getCategory())
-            && e.contains(data.getSeverity()) && e.contains(data.getAssignTo()) && e.contains(str));
+                && e.contains(data.getSeverity()) && e.contains(data.getAssignTo()) && e.contains(str));
     }
 
-    public void clickIDIssue(FieldData data)
-    {
+    public void clickIDIssue(FieldData data) {
 
         listRowsTableIssues.stream()
                 .filter(issue -> issue.getText().contains(data.getSummary()) && issue.getText().contains(data.getCategory())
-                && issue.getText().contains(data.getSeverity()) && issue.getText().contains(data.getAssignTo()))
+                        && issue.getText().contains(data.getSeverity()) && issue.getText().contains(data.getAssignTo()))
                 .findFirst().get()
                 .findElement(By.xpath("//table[@id='buglist']/tbody/tr[*]/td[4]/a"))
                 .click();
     }
 
-    public boolean checkIssueForm(FieldData data)
-    {
+    public boolean checkIssueForm(FieldData data) {
         return (issueTableAdditionalInfo.getText().equals(data.getAdditionalinfo()) && issueTableAssignedTo.getText().equals(data.getAssignTo())
                 && issueTableBugStatus.getText().equals("assigned") && issueTableDescription.getText().equals(data.getDescription())
                 && issueTableOS.getText().equals(data.getOs()) && issueTableOSVersion.getText().equals(data.getOsVersion())
@@ -232,30 +227,32 @@ public class FactoryPageobjectsIssuePage {
                 && issueTablePriority.getText().equals(data.getPriority()) && issueTableStepsToReproduce.getText().equals(data.getSteptoreproduce()));
     }
 
-    public void setStatusIssue(String str)
-    {
+    public void setStatusIssue(String str) {
         buttonNewStatus.click();
         buttonNewStatus.findElement(By.xpath("//*/option[contains(text(), '" + str + "')]")).click();
-
     }
 
-    public void changeStatus()
-    {
+    public void changeStatus() {
         buttonChangeStatusTo.click();
         buttonResolveIssue.click();
     }
 
-    public void closeIssue()
-    {
+    public void closeIssue() {
         buttonClose.click();
         buttonCloseIssue.click();
     }
-    public void ckeckRow(String str) {
 
-        //listRowsSummary.stream()
-        //       .filter(issue -> issue.getText().equals(str))
-        //      .findFirst().get()
-        //       .findElement(By.xpath("//*/td[1]//span[@class='lbl']"))
-        //       .click();
+    public void openRecentlyModified() {
+        buttonMyView.click();
+        tableResentlyModified.click();
+    }
+
+    public void checkRow(FieldData fieldData) {
+
+        listRowsTableIssues.stream()
+                .filter(issue -> issue.getText().contains(fieldData.getSummary()))
+                .findFirst().get()
+                .findElement(By.xpath("//*/td[1]//span[@class='lbl']"))
+                .click();
     }
 }
