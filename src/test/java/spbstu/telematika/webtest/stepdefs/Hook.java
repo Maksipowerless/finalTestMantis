@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 public class Hook {
     WebDriver driver;
 
-
     @Before
     public void before(Scenario scenario) {
 

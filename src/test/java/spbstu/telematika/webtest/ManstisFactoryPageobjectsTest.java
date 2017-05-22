@@ -6,7 +6,7 @@ import spbstu.telematika.MantisSite;
 import spbstu.telematika.helper.ResourseLoaderSTU;
 
 
-
+/*
 public class ManstisFactoryPageobjectsTest extends BaseFactoryPagebjectsTest {
 
     @Test
@@ -53,4 +53,4 @@ public class ManstisFactoryPageobjectsTest extends BaseFactoryPagebjectsTest {
         softAssert.assertAll();
     }
 
-}
+}*/

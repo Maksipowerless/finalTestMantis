@@ -11,7 +11,7 @@ import spbstu.telematika.MantisSite;
 
 import java.util.concurrent.TimeUnit;
 
-
+/*
 public class BaseFactoryPagebjectsTest {
 
     WebDriver driver;
@@ -34,3 +34,4 @@ public class BaseFactoryPagebjectsTest {
         driver.close();
     }
 }
+*/
