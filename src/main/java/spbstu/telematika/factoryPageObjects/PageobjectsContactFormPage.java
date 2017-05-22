@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import spbstu.telematika.factoryPageObjects.entities.User;
 
-public class FactoryPageobjectsContactFormPage {
+public class PageobjectsContactFormPage {
 
     @FindBy(id = "username")
     WebElement username;

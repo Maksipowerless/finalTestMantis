@@ -1,8 +1,10 @@
 package spbstu.telematika.webtest;
 
+import nl.flotsam.xeger.Xeger;
 import org.testng.annotations.Test;
 import spbstu.telematika.MantisSite;
 import spbstu.telematika.helper.ResourseLoaderSTU;
+
 
 
 public class ManstisFactoryPageobjectsTest extends BaseFactoryPagebjectsTest {
@@ -14,40 +16,48 @@ public class ManstisFactoryPageobjectsTest extends BaseFactoryPagebjectsTest {
         MantisSite.contactFormPage.fillLoginPasswordForm(ResourseLoaderSTU.getUser("tester"));
         MantisSite.contactFormPage.submitContactForm();
 
-        MantisSite.issuePage.openReportIssuePage();
-        MantisSite.issuePage.fillFieldsIssue(ResourseLoaderSTU.getFieldData("form1"));
-        MantisSite.issuePage.submitIssue();
-        MantisSite.issuePage.openViewIssuePage();
-        softAssert.assertTrue(MantisSite.issuePage.isExistRow(ResourseLoaderSTU.getFieldData("form1"),"assigned"));
-        MantisSite.issuePage.logout();
+        MantisSite.issueReportPage.openReportIssuePage();
+        MantisSite.issueReportPage.fillFieldsIssue(ResourseLoaderSTU.getFieldData("form1"));
+        MantisSite.issueReportPage.submitIssue();
+
+        MantisSite.issueViewPage.openViewIssuePage();
+        softAssert.assertTrue(MantisSite.issueViewPage.isExistRow(ResourseLoaderSTU.getFieldData("form1"),"assigned"));
+        MantisSite.issueViewPage.logout();
 
         MantisSite.contactFormPage.fillLoginPasswordForm(ResourseLoaderSTU.getUser("developer"));
         MantisSite.contactFormPage.submitContactForm();
-        MantisSite.issuePage.openViewIssuePage();
-        softAssert.assertTrue(MantisSite.issuePage.isExistRow(ResourseLoaderSTU.getFieldData("form1"), "assigned"));
-        MantisSite.issuePage.clickIDIssue(ResourseLoaderSTU.getFieldData("form1"));
-        softAssert.assertTrue(MantisSite.issuePage.checkIssueForm(ResourseLoaderSTU.getFieldData("form1")));
+        MantisSite.issueViewPage.openViewIssuePage();
+        softAssert.assertTrue(MantisSite.issueViewPage.isExistRow(ResourseLoaderSTU.getFieldData("form1"), "assigned"));
+        MantisSite.issueViewPage.clickIDIssue(ResourseLoaderSTU.getFieldData("form1"));
+        softAssert.assertTrue(MantisSite.issueViewPage.checkIssueForm(ResourseLoaderSTU.getFieldData("form1")));
 
-        MantisSite.issuePage.setStatusIssue("resolved");
-        MantisSite.issuePage.changeStatus();
-        MantisSite.issuePage.logout();
+        MantisSite.issueViewPage.setStatusIssue("resolved");
+        MantisSite.issueViewPage.changeStatus();
+        MantisSite.issueViewPage.logout();
 
         MantisSite.contactFormPage.fillLoginPasswordForm(ResourseLoaderSTU.getUser("manager"));
         MantisSite.contactFormPage.submitContactForm();
-        MantisSite.issuePage.openViewIssuePage();
-        softAssert.assertTrue(MantisSite.issuePage.isExistRow(ResourseLoaderSTU.getFieldData("form1"), "resolved"));
+        MantisSite.issueViewPage.openViewIssuePage();
+        softAssert.assertTrue(MantisSite.issueViewPage.isExistRow(ResourseLoaderSTU.getFieldData("form1"), "resolved"));
 
-        MantisSite.issuePage.clickIDIssue(ResourseLoaderSTU.getFieldData("form1"));
-        MantisSite.issuePage.setStatusIssue("closed");
-        MantisSite.issuePage.closeIssue();
+        MantisSite.issueViewPage.clickIDIssue(ResourseLoaderSTU.getFieldData("form1"));
+        MantisSite.issueViewPage.setStatusIssue("closed");
+        MantisSite.issueViewPage.closeIssue();
 
-        MantisSite.issuePage.openRecentlyModified();
-        softAssert.assertTrue(MantisSite.issuePage.isExistRow(ResourseLoaderSTU.getFieldData("form1"), "closed"));
+        MantisSite.issueViewPage.openRecentlyModified();
+        softAssert.assertTrue(MantisSite.issueViewPage.isExistRow(ResourseLoaderSTU.getFieldData("form1"), "closed"));
 
-        MantisSite.issuePage.checkRow(ResourseLoaderSTU.getFieldData("form1"));
-        MantisSite.issuePage.deleteIssues();
-        MantisSite.issuePage.logout();
+        MantisSite.issueViewPage.checkRow(ResourseLoaderSTU.getFieldData("form1"));
+        MantisSite.issueViewPage.deleteIssues();
+        MantisSite.issueViewPage.logout();
         softAssert.assertAll();
     }
 
+    @Test
+    public void test() {
+        String regexp = "\\^[1-9]{1,2}\\.[1-9]{1,2}\\$";
+        Xeger generation = new Xeger(regexp);
+        String result = generation.generate();
+
+    }
 }

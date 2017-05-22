@@ -30,9 +30,9 @@ public class Hook {
     @After
     public void after(Scenario scenario) {
 
-        MantisSite.issuePage.checkRow(ResourseLoaderSTU.getFieldData("form1"));
-        MantisSite.issuePage.deleteIssues();
-        MantisSite.issuePage.logout();
+        MantisSite.issueViewPage.checkRow(ResourseLoaderSTU.getFieldData("form1"));
+        MantisSite.issueViewPage.deleteIssues();
+        MantisSite.issueViewPage.logout();
         driver.close();
     }
 }

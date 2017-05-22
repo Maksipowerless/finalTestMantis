@@ -6,60 +6,13 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import spbstu.telematika.factoryPageObjects.entities.FieldData;
 
-
 import java.util.List;
 import java.util.stream.Collectors;
 
-
-public class FactoryPageobjectsIssuePage {
-
-    @FindBy(xpath = "//a[contains(text(), 'Report Issue')]")
-    WebElement buttonReportIssue;
-
-    @FindBy(id = "category_id")
-    WebElement checkCategory;
-
-    @FindBy(id = "reproducibility")
-    WebElement checkReproducibility;
-
-    @FindBy(id = "severity")
-    WebElement checkSeverity;
-
-    @FindBy(id = "priority")
-    WebElement checkPriority;
-
-    @FindBy(xpath = "//*[@alt = '+']")
-    WebElement buttonUncover;
-
-    @FindBy(id = "platform")
-    WebElement fieldPlatform;
-
-    @FindBy(id = "os")
-    WebElement fielsOS;
-
-    @FindBy(id = "os_build")
-    WebElement fieldOSBuild;
-
-    @FindBy(id = "handler_id")
-    WebElement checkAssignTo;
-
-    @FindBy(id = "summary")
-    WebElement fieldSummary;
-
-    @FindBy(id = "description")
-    WebElement fieldDescription;
-
-    @FindBy(id = "steps_to_reproduce")
-    WebElement fieldStepToReproduce;
-
-    @FindBy(id = "additional_info")
-    WebElement fieldAdditionalInfo;
-
-    @FindBy(id = "tag_string")
-    WebElement fieldTagString;
-
-    @FindBy(xpath = "//input[contains(@class, 'btn btn-primary')]")
-    WebElement buttonSubmitUssue;
+/**
+ * Created by maxfromperek on 21.05.17.
+ */
+public class PageObjectViewIssuePage {
 
     @FindBy(xpath = "//select[@name='action']//option[@value='DELETE']")
     WebElement menuDelete;
@@ -144,43 +97,6 @@ public class FactoryPageobjectsIssuePage {
 
     @FindBy(xpath = "//a[contains(text(), 'Recently Modified')]")
     WebElement tableResentlyModified;
-
-    public void openReportIssuePage() {
-        buttonReportIssue.click();
-    }
-
-    public void fillFieldsIssue(FieldData fieldData) {
-
-        String category = fieldData.getCategory();
-        checkCategory.findElement(By.xpath("//option[contains(text(), '" + category + "')]")).click();
-
-        String reproducibility = fieldData.getReproducibility();
-        checkReproducibility.findElement(By.xpath("//option[contains(text(), '" + reproducibility + "')]")).click();
-
-        String severity = fieldData.getSeverity();
-        checkSeverity.findElement(By.xpath("//option[contains(text(), '" + severity + "')]")).click();
-
-        String priority = fieldData.getPriority();
-        checkPriority.findElement(By.xpath("//option[contains(text(), '" + priority + "')]")).click();
-
-        if (buttonUncover.isDisplayed())
-            buttonUncover.click();
-        fieldPlatform.sendKeys(fieldData.getPlatform());
-        fielsOS.sendKeys(fieldData.getOs());
-        fieldOSBuild.sendKeys(fieldData.getOsVersion());
-
-        String assignTo = fieldData.getAssignTo();
-        checkAssignTo.findElement(By.xpath("//option[contains(text(), '" + assignTo + "')]")).click();
-
-        fieldSummary.sendKeys(fieldData.getSummary());
-        fieldDescription.sendKeys(fieldData.getDescription());
-        fieldStepToReproduce.sendKeys(fieldData.getSteptoreproduce());
-        fieldAdditionalInfo.sendKeys(fieldData.getAdditionalinfo());
-    }
-
-    public void submitIssue() {
-        buttonSubmitUssue.click();
-    }
 
     public void deleteIssues() {
         menuDelete.click();

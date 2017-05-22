@@ -56,7 +56,7 @@ public class ResourseLoaderSTU {
         fieldData = new Gson().fromJson(rawData, type);
 
         for (String key : fieldData.keySet()) {
-            fieldData.get(key).setRandomNumbers();
+            fieldData.get(key).setRandomStrings();
         }
     }
 

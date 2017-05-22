@@ -3,19 +3,22 @@ package spbstu.telematika;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import spbstu.telematika.factoryPageObjects.FactoryPageobjectsContactFormPage;
-import spbstu.telematika.factoryPageObjects.FactoryPageobjectsIssuePage;
+import spbstu.telematika.factoryPageObjects.PageObjectViewIssuePage;
+import spbstu.telematika.factoryPageObjects.PageobjectsContactFormPage;
+import spbstu.telematika.factoryPageObjects.PageobjectsReportIssuePage;
 
 
 public class MantisSite {
 
-    public static FactoryPageobjectsContactFormPage contactFormPage;
-    public static FactoryPageobjectsIssuePage issuePage;
+    public static PageobjectsContactFormPage contactFormPage;
+    public static PageobjectsReportIssuePage issueReportPage;
+    public static PageObjectViewIssuePage issueViewPage;
     private static WebDriver driver;
 
     public static void init(WebDriver driver){
-        MantisSite.contactFormPage = PageFactory.initElements(driver, FactoryPageobjectsContactFormPage.class);
-        MantisSite.issuePage = PageFactory.initElements(driver, FactoryPageobjectsIssuePage.class);
+        MantisSite.contactFormPage = PageFactory.initElements(driver, PageobjectsContactFormPage.class);
+        MantisSite.issueReportPage = PageFactory.initElements(driver, PageobjectsReportIssuePage.class);
+        MantisSite.issueViewPage = PageFactory.initElements(driver, PageObjectViewIssuePage.class);
         MantisSite.driver = driver;
     }
 

@@ -4,13 +4,13 @@
     "reproducibility":"always",
     "severity":"block",
     "priority":"urgent",
-    "platform":"Win32",
-    "os":"Windows",
-    "osVersion":"30",
+    "platform":"[a-z]{4,7}",
+    "os":"[a-z]{4,7}",
     "assignTo":"developer",
-    "summary":"summary qwerty",
-    "description":"this is test!!!",
-    "steptoreproduce":"step by step",
-    "additionalinfo":"it's work"
+    "osVersion":"[1-9]{1,2}\\.[1-9]{1,2}",
+    "summary":"summary [1-9]{2,3}",
+    "description":"description [1-9]{2,3}",
+    "steptoreproduce":"reproduce steps [1-9]{2,3}",
+    "additionalinfo":"additional info [1-9]{2,3}"
   }
 }

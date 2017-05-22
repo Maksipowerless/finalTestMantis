@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import nl.flotsam.xeger.Xeger;
 
 import java.util.Random;
 
@@ -27,18 +28,27 @@ public class FieldData {
     String steptoreproduce;
     String additionalinfo;
 
-    public void setRandomNumbers() {
-        int max = 1000;
-        int min = 1;
+    public void setRandomStrings()
+    {
+        Xeger generation = new Xeger(platform);
+        platform = generation.generate();
 
-        Random rn = new Random();
-        int randInt = rn.nextInt(max - min + 1) + min;
-        summary += randInt;
-        randInt = rn.nextInt(max - min + 1) + min;
-        description += randInt;
-        randInt = rn.nextInt(max - min + 1) + min;
-        steptoreproduce += randInt;
-        randInt = rn.nextInt(max - min + 1) + min;
-        additionalinfo += randInt;
+        generation = new Xeger(os);
+        os = generation.generate();
+
+        generation = new Xeger(osVersion);
+        osVersion = generation.generate();
+
+        generation = new Xeger(summary);
+        summary = generation.generate();
+
+        generation = new Xeger(description);
+        description = generation.generate();
+
+        generation = new Xeger(steptoreproduce);
+        steptoreproduce = generation.generate();
+
+        generation = new Xeger(additionalinfo);
+        additionalinfo = generation.generate();
     }
 }
