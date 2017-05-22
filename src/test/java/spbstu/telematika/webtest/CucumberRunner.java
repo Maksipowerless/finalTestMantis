@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(
+        format = {"pretty", "html:target/reports/html", "json:target/reports/mainReport.json"},
         features = {"src/test/resourses/features"},
         glue = {"spbstu.telematika.webtest.stepdefs"}
 )

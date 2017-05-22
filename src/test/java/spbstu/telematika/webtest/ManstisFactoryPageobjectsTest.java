@@ -53,11 +53,4 @@ public class ManstisFactoryPageobjectsTest extends BaseFactoryPagebjectsTest {
         softAssert.assertAll();
     }
 
-    @Test
-    public void test() {
-        String regexp = "\\^[1-9]{1,2}\\.[1-9]{1,2}\\$";
-        Xeger generation = new Xeger(regexp);
-        String result = generation.generate();
-
-    }
 }
